@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PolishUIDemo.App">
     <Application.Resources>
+        <Color x:Key="AccentColor">#25bc99</Color>
 
+        <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource AccentColor}"/>
+        </Style>
     </Application.Resources>
 </Application>

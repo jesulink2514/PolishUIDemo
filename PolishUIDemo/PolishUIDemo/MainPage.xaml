@@ -2,13 +2,68 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PolishUIDemo"
-             x:Class="PolishUIDemo.MainPage">
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
+             x:Class="PolishUIDemo.MainPage"
+             Title="Profile"
+             BackgroundColor="Black">
+    <ContentPage.Resources>
+        <xamanimation:StoryBoard x:Key="Entrance">
+            <xamanimation:FadeInAnimation 
+                Target="{x:Reference Stats}"/>
+            <xamanimation:FadeInAnimation 
+                Target="{x:Reference Name}"/>
+            <xamanimation:FadeInAnimation 
+                Target="{x:Reference Bio}"/>
+            <xamanimation:FadeInAnimation 
+                Target="{x:Reference Decoration}"/>
+        </xamanimation:StoryBoard>
+    </ContentPage.Resources>
+    <ContentPage.Triggers>
+        <EventTrigger Event="Appearing">
+            <xamanimation:BeginAnimation 
+                Animation="{StaticResource Entrance}"/>
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="ProfilePicture" Grid.RowSpan="5" HorizontalOptions="FillAndExpand"
+              Source="profile.jpg" Aspect="AspectFill"
+              VerticalOptions="FillAndExpand"/>
+        <Label x:Name="Name" Grid.Row="1" Margin="15,0"
+            Text="Jesus Angulo" FontAttributes="Bold"
+            FontSize="28"
+            TextColor="White"/>
+        <Label x:Name="Bio" Grid.Row="2" Margin="15,0"
+               FontSize="16"
+            Text="Software architect,Microsoft MVP ,Certified Xamarin Mobile Developer,.Net Developer with UX in mind, UX enthusiast, mobile addicted and clean code lover."
+            TextColor="White"/>
+        <BoxView x:Name="Decoration" HeightRequest="3" WidthRequest="40" 
+                 HorizontalOptions="Start"
+                 Grid.Row="3" Margin="15,5,15,0"
+                 BackgroundColor="{StaticResource AccentColor}"/>
+        <StackLayout x:Name="Stats" Orientation="Horizontal" Grid.Row="4"
+                     Margin="15,25,15,25">
+            <Image Source="star.png"
+                   HeightRequest="14"/>
+            <Label Text="1534" TextColor="White" FontAttributes="Bold" HorizontalOptions="StartAndExpand" />
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+            <Image Source="message.png"
+                   HeightRequest="14"/>
+            <Label Text="127" TextColor="White" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
 
+            <Image Source="contact.png"
+                   HeightRequest="14"/>
+            <Label Text="235" TextColor="White" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+
+            <Image Source="star.png"
+                   HeightRequest="14"/>
+            <Label Text="1956" TextColor="White" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+        </StackLayout>
+    </Grid>
 </ContentPage>
